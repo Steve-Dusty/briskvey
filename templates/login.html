@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}" />  
+    <title>Brisvey</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="contents">
+            <form action = "{{url_for('login')}}" method="POST">
+                <h1 style="text-align: center;">Login</h1>
+                {{ form.email.label(class_="email-label") }}: <br>
+                {{ form.email(class_="email-form") }} <br>
+
+                {{ form.password.label(class_="password-label") }}: <br>
+                {{ form.password(class_="password-form")}} <br>
+                {{ form.csrf_token }}
+                <div class="button-align">
+                    {{ form.submit(class_="submit-button") }}
+                </div>
+                {% if message %}
+                    {{ message }}
+                {% endif %}
+            </form>
+        </div>
+</body>
+</html>

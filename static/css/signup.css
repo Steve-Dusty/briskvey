@@ -1,0 +1,126 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #c5d7bd;
+}
+
+.container {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    overflow: auto;
+    
+    
+     
+}
+
+.contents {
+    background-color: #9fb8ad;
+    margin: 5% auto 15% auto; 
+    border: 1px solid #fb743e;
+    width: 50%; 
+    
+    
+}
+
+.email-label {
+    color: #383e56;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: black;
+}
+
+.email-form {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 20px;
+    width: 80%;
+    border-radius: 12px;
+
+}
+
+.username-label {
+    color: #383e56;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: black;
+}
+
+.username-form {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 20px;
+    width: 80%;
+    border-radius: 12px;
+}
+
+
+.password-label {
+    color: #383e56;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: black;
+}
+
+.password-form {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 20px;
+    width: 80%;
+    border-radius: 12px;
+
+    
+}
+
+.confirm-label {
+    color: #383e56;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: black;
+}
+
+.confirm-form {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 20px;
+    width: 80%;
+    border-radius: 12px;
+
+    
+}
+
+.submit-button { 
+    background-color: #383e56;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+    border-radius: 12px;
+
+}
+
+.submit-button:hover {
+    opacity: 1;
+}
+
+.button-align {
+    text-align: center;
+}
+
+@media screen and (max-width: 300px) {
+    .submit-button {
+       width: 100%;
+    }
+  }

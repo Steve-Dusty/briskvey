@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" />  
+    <title>Brisvey</title>
+</head>
+<body>
+    <div class="starting">
+        <img src="{{ url_for('static', filename='images/logo.svg')}}">
+        <p1 class="title">Brisvey</p1>
+        
+        <div class="rest">
+            <h1 class="moto">Talk Simply & Convey with Ease</h1>
+            <h3 class="text">Chat with friends using this simple, user-friendly, yet quality chat application. <br>Join now or login to start chatting!</h3>
+                <a class="button signupbutton" href="{{ url_for('signup') }}">Sign up</a>
+                <a class="button loginbutton" href="{{ url_for ('login') }}">Log in</a>
+        </div>
+    </div>
+</body>
+</html>
