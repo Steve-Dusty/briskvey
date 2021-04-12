@@ -1,7 +1,7 @@
 from flask import Flask, render_template, flash, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy 
 from flask_socketio import SocketIO, send   
-from flask_login import LoginManager, UserMixin, login_user
+from flask_login import LoginManager, UserMixin, login_user, current_user, login_required, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from forms import SignUpForm, LoginForm
 from datetime import datetime 
@@ -21,7 +21,6 @@ class User(UserMixin, db.Model):
   email = db.Column(db.String(255), unique=True, nullable=False)
   username = db.Column(db.String(50), unique=True, nullable=False)
   password = db.Column(db.String(500), nullable=False)
-  # should I make profile picture?
 
   def __init__(self, email, username, password):
     self.email = email
@@ -38,18 +37,29 @@ def home():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+  if current_user.is_authenticated:
+    return redirect(url_for('home'))
+    
   form = LoginForm()
   if request.method == "POST" and form.validate():
 
     user = User.query.filter_by(email=form.email.data).first()
     """User' object has no attribute 'check_password_hash WATCH OUT """
     if user and check_password_hash(user.password, form.password.data):
-      login_user(user)
-      return "You are now logged in!"
+      login_user(user, remember=True)
+      return redirect(url_for("dashboard"))
     else:
       credentialsError = "Incorrect credentials. Try again."
       return render_template("login.html", form=form, message=credentialsError)
   return render_template("login.html", form=form)
+
+
+""" TEST URL FOR LOGGING OUT """
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+""" TEST URL FOR LOGGING OUT """
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -60,8 +70,8 @@ def signup():
     email = form.email.data
     username = form.username.data
     # check if username & email already exist in database
-    existsUsername = bool(User.query.filter_by(username=form.username.data).first())
-    existsEmail = bool(User.query.filter_by(email=form.email.data).first())
+    existsUsername = bool(User.query.filter_by(username=username).first())
+    existsEmail = bool(User.query.filter_by(email=email).first())
     if existsUsername == True:
       return render_template("signup.html", form=form, existsUsernameMessage="This username is taken. Choose a new username!")
     if existsEmail == True:
@@ -74,7 +84,18 @@ def signup():
     
   return render_template("signup.html", form=form)
 
-  
+"""Login and logout handlers"""
+@app.route("/dashboard", methods=["GET", "POST"])
+@login_required
+def dashboard():
+  if current_user.is_authenticated:
+    return render_template("dashboard.html")
+
+@app.route("/dashboard")
+@app.login_manager.unauthorized_handler
+def unauthorized_handler():
+  return redirect(url_for("home"))
+
 @app.after_request
 def add_header(r):
   print("[INFO]===> Adding headers...")
