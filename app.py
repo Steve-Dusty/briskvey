@@ -6,6 +6,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from forms import SignUpForm, LoginForm
 from datetime import datetime 
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'dfewfew123213rwdsgert34tgfd1234trgf'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -96,6 +97,10 @@ def dashboard():
 def unauthorized_handler():
   return redirect(url_for("home"))
 
+@socketio.on('message')
+def message(data):
+  print(f"\n\n{data}\n\n")
+  send(data)
 @app.after_request
 def add_header(r):
   print("[INFO]===> Adding headers...")
@@ -106,7 +111,7 @@ def add_header(r):
   
 if __name__ == "__main__":
     db.create_all()
-    app.run(debug=True, host="0.0.0.0", port=8000)
+    socketio.run(app, debug=True, host="0.0.0.0", port=8000)
 
 
 
