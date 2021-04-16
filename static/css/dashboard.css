@@ -3,10 +3,34 @@ body {
     background-color: #c5d7bd;
 }
 
+#main-section {
+    overflow: hidden;
+    width: 100%;
+}
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fb743e;
+  }
+  
+  li {
+    float: right;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  
 #display-message-section {
-    background-color: white;
-    border-radius: 10%;
+    background-color: #383e56;
     text-align: center;
     margin-top: 0;
     min-height: 82vh;
@@ -17,23 +41,21 @@ body {
 #input-area {
     padding-left: 1em;
     padding-right: 1em;
-    padding-top: 3em;
     bottom: 0;
+    text-align: center;
 }
 
 input {
-    margin-bottom: 20px;
     margin-right: 20px;
     margin-left: 20px;
     padding: 20px;
     width: 75%;
     border-radius: 12px;
-    float: left;
 
 }
 
 input[type=text]:focus{
-    border-color: #ffc107;
+    border-color: #fb743e;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 10px #fb743e;
 }
 
