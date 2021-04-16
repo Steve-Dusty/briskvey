@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector("#send_message").onclick = () => {
         socket.send({'msg':document.querySelector('#user_message').value, 
         'username': username});
-    } 
+
+        document.querySelector('#user_message').value = '';
+    };
 
     // To scroll down the chat window 
     function scrollDown(){
