@@ -2,3 +2,38 @@ body {
     font-family: 'Ubuntu', sans-serif;
     background-color: #c5d7bd;
 }
+
+
+#display-message-section {
+    background-color: white;
+    border-radius: 10%;
+    text-align: center;
+    margin-top: 0;
+    min-height: 82vh;
+    max-height: 82vh;
+    overflow-y: auto; /*Make  this section scrolable */
+}
+
+#input-area {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 3em;
+    bottom: 0;
+}
+
+input {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 20px;
+    width: 75%;
+    border-radius: 12px;
+    float: left;
+
+}
+
+input[type=text]:focus{
+    border-color: #ffc107;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 10px #fb743e;
+}
+

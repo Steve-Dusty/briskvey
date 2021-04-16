@@ -14,20 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
         + br.outerHTML + span_timestamp.outerHTML;  
         document.querySelector('#display-message-section').append(p);
     });
-    scrollDown();
     // Send message
-    document.querySelector("#send_message").onclick = () => {
-        socket.send({'msg':document.querySelector('#user_message').value, 
-        'username': username});
+    document.querySelector("#user_message").addEventListener("keyup", function(event) {
+        if (event.code === "Enter") {
+            event.preventDefault();
+            socket.send({'msg':document.querySelector('#user_message').value, 
+            'username': username});
+    
+            document.querySelector('#user_message').value = '';
+        }
+    })
 
-        document.querySelector('#user_message').value = '';
-    };
 
-    // To scroll down the chat window 
-    function scrollDown(){
-        const window = document.querySelector("#display-message-section");
-        window.scrollTop = window.scrollHeight;
-        
-    }
+
 
 });

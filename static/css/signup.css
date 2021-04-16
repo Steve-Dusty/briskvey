@@ -10,9 +10,6 @@ body {
     display: inline-block;
     border: none;
     overflow: auto;
-    
-    
-     
 }
 
 .contents {
@@ -75,8 +72,6 @@ body {
     padding: 20px;
     width: 80%;
     border-radius: 12px;
-
-    
 }
 
 .confirm-label {
@@ -94,8 +89,6 @@ body {
     padding: 20px;
     width: 80%;
     border-radius: 12px;
-
-    
 }
 
 .submit-button { 
