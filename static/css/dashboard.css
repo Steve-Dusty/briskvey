@@ -35,14 +35,11 @@ ul {
 
   
 #display-message-section {
-    background-color: #383e56;
-    text-align: center;
     margin-top: 0;
     min-height: 84vh;
     max-height: 84vh;
     overflow-y: auto; /*Make  this section scrolable */
     justify-content: center;
-    align-items: center;
 }
 
 #input-area {
@@ -66,3 +63,42 @@ input[type=text]:focus{
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 10px #fb743e;
 }
 
+.my-msg {
+    margin-left:7em;
+    margin-right:1em;
+    padding: 0.5em 0.5em 0.5em 1em;
+    border-radius: 5px;
+    border-color: #206ED2;
+    border-width: 1px;
+    border-style: solid;
+
+}
+
+.others-msg {
+    margin-right:7em;
+    margin-left: 1em;
+    padding: 0.5em 0.5em 0.5em 1em;
+    border-radius: 5px;
+    border-color: grey;
+    border-width: 0.5px;
+    border-style: solid;
+    background-color: #9fb8ad;
+
+}
+
+.my-username {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #FF6B13;
+}
+
+.other-username {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #206ED2;
+}
+
+.timestamp {
+    color: #656d78;
+    font-size:0.7em;
+}
