@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
         p.innerHTML = span_username.outerHTML + br.outerHTML +  data.msg 
         + br.outerHTML + span_timestamp.outerHTML;  
         document.querySelector('#display-message-section').append(p);
+        scrollDownChatWindow();
+
     });
     // Send message
     document.querySelector("#user_message").addEventListener("keyup", function(event) {
@@ -25,6 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
+    function scrollDownChatWindow() {
+        const chatWindow = document.querySelector("#display-message-section");
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
 
 
 

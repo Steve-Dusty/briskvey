@@ -1,3 +1,6 @@
+*,*::before,*::after{margin: 0; padding: 0; }
+
+
 body {
     font-family: 'Ubuntu', sans-serif;
     background-color: #c5d7bd;
@@ -5,8 +8,10 @@ body {
 
 #main-section {
     overflow: hidden;
-    width: 100%;
+    margin: 0;
+    padding: 0;
 }
+
 
 ul {
     list-style-type: none;
@@ -33,9 +38,11 @@ ul {
     background-color: #383e56;
     text-align: center;
     margin-top: 0;
-    min-height: 82vh;
-    max-height: 82vh;
+    min-height: 84vh;
+    max-height: 84vh;
     overflow-y: auto; /*Make  this section scrolable */
+    justify-content: center;
+    align-items: center;
 }
 
 #input-area {
