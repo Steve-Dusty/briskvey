@@ -1,10 +1,10 @@
+from time import localtime, strftime
 from flask import Flask, render_template, flash, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy 
-from flask_socketio import SocketIO, send   
+from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from flask_login import LoginManager, UserMixin, login_user, current_user, login_required, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from forms import SignUpForm, LoginForm
-from datetime import datetime 
 
 
 app = Flask(__name__)
@@ -90,7 +90,7 @@ def signup():
 @login_required
 def dashboard():
   if current_user.is_authenticated:
-    return render_template("dashboard.html")
+    return render_template("dashboard.html", username=current_user.username)
 
 @app.route("/dashboard")
 @app.login_manager.unauthorized_handler
@@ -100,7 +100,8 @@ def unauthorized_handler():
 @socketio.on('message')
 def message(data):
   print(f"\n\n{data}\n\n")
-  send(data)
+  send({'msg': data['msg'], 'username': data['username'], 'time_stamp':strftime('%b-%d %I:%M%p', localtime())}, broadcast=True)
+  
 @app.after_request
 def add_header(r):
   print("[INFO]===> Adding headers...")
