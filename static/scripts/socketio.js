@@ -1,4 +1,14 @@
-document.addEventListener('DOMContentLoaded', () => {
+//Prevents XSS attacks
+function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
+
+ document.addEventListener('DOMContentLoaded', () => {
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
 
@@ -46,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector("#user_message").addEventListener("keyup", function(event) {
         if (event.code === "Enter") {
             event.preventDefault();
-            socket.send({'msg':document.querySelector('#user_message').value, 
+            socket.send({'msg':escapeHtml(document.querySelector('#user_message').value), 
             'username': username});
     
             document.querySelector('#user_message').value = '';
