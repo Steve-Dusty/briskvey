@@ -1,5 +1,3 @@
-import os 
-
 from time import localtime, strftime
 from flask import Flask, render_template, flash, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy 
@@ -7,12 +5,19 @@ from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from flask_login import LoginManager, UserMixin, login_user, current_user, login_required, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from forms import SignUpForm, LoginForm
+import json
 
+with open("config.json") as f:
+  data = json.load(f)
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SECRET_KEY'] = data['SECRET_KEY']
+app.config['SQLALCHEMY_DATABASE_URI'] = data['SQLALCHEMY_DATABASE_URI']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['RECAPTCHA_USE_SSL']= False
+app.config['RECAPTCHA_PUBLIC_KEY'] = '6LcSxK4aAAAAAHjk5w2-KSNawCTfJvdAF-u8N3OI'
+app.config['RECAPTCHA_PRIVATE_KEY']= data['RECAPTCHA_PRIVATE_KEY']
+
 # Socket.io  
 socketio = SocketIO(app)  
 db = SQLAlchemy(app)
@@ -103,7 +108,7 @@ def unauthorized_handler():
 def message(data):
   send({'msg': data['msg'], 'username': data['username'], 'time_stamp':strftime('%b-%d %I:%M%p', localtime())}, broadcast=True)
 
-# CONNECTEDF MESSAGE COMING SOON
+# CONNECTED MESSAGE COMING SOON
 @app.after_request
 def add_header(r):
   print("[INFO]===> Adding headers...")
@@ -113,12 +118,5 @@ def add_header(r):
   return r
   
 if __name__ == "__main__":
-  app.run()
-
-
-
-
-
-
-
+  socketio.run(app, debug=True, host="0.0.0.0", port=80)
 

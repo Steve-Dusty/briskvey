@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}" />  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}" />
+    <script src="https://www.google.com/recaptcha/api.js"></script>  
     <title>Brisvey</title>
 </head>
 <body>
@@ -26,6 +27,7 @@
               {{ form.csrf_token }}
               <div class="button-align">
               {{ form.submit(class_="submit-button") }}
+              {{ form.recaptcha }}
               </div>
               {% if existsEmailMessage %}  
                 {{ existsEmailMessage }}
@@ -50,5 +52,6 @@
             </form>
           </div>
     </div>
+    
 </body>
 </html>

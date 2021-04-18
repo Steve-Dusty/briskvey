@@ -68,6 +68,5 @@ function escapeHtml(unsafe) {
         chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 
-
-
+    
 });
